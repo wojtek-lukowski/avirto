@@ -35,6 +35,7 @@
 --primary-color: #002F6C;
 --white: #ffff;
 --black: #0000;
+--text-color: #777777;
 }
 
 
@@ -44,28 +45,33 @@
 
 html {
   font-size: 62.5%;
-  /* color: var(--white); */
+  color: var(--text-color);
 }
 
 .page {
   max-width: var(--page);
   margin: auto;
   font-size: 2rem;
-  background-color: lightblue;
 }
 
 .content {
 max-width: var(--column14);
 margin: auto;
+background-color: bisque;
+border: 1px solid red;
+}
+
+.header-wrapper {
+  background-color: var(--primary-color);
 }
 
 header {
   max-width: var(--column14);
   height: 59.4rem;
   margin: auto;
+  padding-top: 2.4em;
   color: var(--white);
-
-  /* background-color: rosybrown; */
+  background-color: transparent;
 }
 
 .header-info {
@@ -77,10 +83,22 @@ header {
 h1 {
   font-size: 6rem;
   text-transform: uppercase;
+  position: relative;
+}
+
+h1::after {
+  content: "";
+  width: 6rem;
+  height: var(--gap0-5);
+  background-color: var(--white);
+  position: absolute;
+  left: 0;
+  bottom: -2.6rem;
 }
 
 .header-info p {
   font-size: 3rem;
+  margin-top: 6.6rem;
 }
 
 .page-menu {
@@ -117,14 +135,25 @@ background-color: var(--primary-color);
 }
 
 .mission-header h2 {
+  position: relative;
   font-size: 3rem;
   text-transform: uppercase;
   margin-top: 0;
 }
 
+.mission-header h2::after {
+  content: "";
+  width: 6rem;
+  height: var(--gap0-5);
+  background-color: var(--white);
+  position: absolute;
+  left: 0;
+  bottom: -2rem;
+}
+
 .mission-content {
   position: relative;
-  top: -10px;
+  top: -1rem;
   width: calc(100% - 2rem);
   margin: auto;
   padding: 2.9rem 2rem 1.8rem;
@@ -132,8 +161,55 @@ background-color: var(--primary-color);
   background-color: var(--white);
 }
 
+.content-video-wrapper {
+  border: 1px solid lime;
+  display: none;
+}
+
 .content-video {
-  background-color: cornsilk;
+  position: relative;
+  margin-top: 11.9rem;
+  background-color: var(--white);
+  border: 1px solid lime;
+}
+
+.content-video img {
+  /* position: absolute;
+  top: -4rem;
+  left: 0; */
+  transform: translate(0, -4rem);
+  width: var(--column7);
+}
+
+.content-video-info {
+  position: absolute;
+  /* right: var(--page-padding); */
+top: 0;
+  transform: translate(var(--column8), 0);
+  width: var(--column6);
+}
+
+.content-video-info h2 {
+position: relative;
+font-size: 4rem;
+text-transform: uppercase;
+margin: 3.6rem auto 7.8rem;
+}
+
+.content-video-info h2::after {
+  content: "";
+  width: 6rem;
+  height: var(--gap0-5);
+  background-color: var(--text-color);
+  position: absolute;
+  left: 0;
+  bottom: -4rem;
+}
+
+.test {
+  width: 100%;
+  height: 200px;
+  background-color: lime;
 }
 
 
