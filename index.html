@@ -22,10 +22,10 @@
           <p class="menu-logo">TEST LOGO</p>
           <ul class="menu-items">
             <li>Menu 1</li>
-            <li>Hauptmenu 2</li>
-            <li>Hauptmenu 3</li>
-            <li>Hauptmenu 4</li>
-            <li>Hauptmenu 5</li>
+            <li class="menu-item" id="test">Hauptmenu 2</li>
+            <li class="menu-item">Hauptmenu 3</li>
+            <li class="menu-item">Hauptmenu 4</li>
+            <li class="menu-item">Hauptmenu 5</li>
           </ul>
           <ul>
             <li>DE</li>
@@ -42,7 +42,24 @@
               </svg>
             </li>
           </ul>
-          <div class="page-menu-open">test menu open
+          <div class="page-menu-open" id="open">
+            <p class="underline">Hauptmenu</p>
+            <ul>
+              <div>
+                <li>Untermenu 1</li>
+                <li>Untermenu 2</li>
+                <li>Untermenu 3</li>
+              </div>
+              <div>
+                <li>Untermenu 4</li>
+                <li>Untermenu 5</li>
+                <li>Untermenu 6</li>
+              </div>
+              <div>
+                <li>Untermenu 7</li>
+                <li>Untermenu 8</li>
+              </div>
+            </ul>
           </div>
         </div>
         <div class="bread-crumbs">
@@ -104,10 +121,10 @@
       <img src="https://via.placeholder.com/640x444.png" alt="" class="content-video-img">
     </div>
 
-
-    <div class="overlay"></div>
+    <div class="overlay" id="overlay"></div>
   </main>
-  </div>
+
+  <script src="./script/script.js"></script>
 </body>
 
 </html>
