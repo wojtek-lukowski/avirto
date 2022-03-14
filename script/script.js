@@ -1,23 +1,44 @@
+localStorage.clear('selectedArray');
 
 toggleMenu = (e) => {
+
   const overlay = document.getElementById('overlay');
   const menuItem = e.target; //button
   const menuId = e.target.id; // menu-item id
 
-  const allOpens = document.getElementsByClassName('menu-open');
-  const allItems = document.getElementsByClassName('menu-item');
+  const allItems = document.getElementsByClassName('menu-item'); //all buttons
+  const allOpens = document.getElementsByClassName('menu-open'); //all menus
 
-  const allMenus = [];
-  const allMenuItems = [];
+  const allMenuItems = []; //buttons array
+  const allMenuItemIds = []; //buttons id array
+  const allMenus = []; //id's array
+  const allIds = []; //id's array
 
-  for (let i = 0; i < allOpens.length; i++) {
-    let menu = allOpens[i];
-    allMenus.push(menu);
-  }
+  let isSelected = []; //is selected array
 
   for (let i = 0; i < allItems.length; i++) {
     let item = allItems[i];
     allMenuItems.push(item);
+  } //button array elements
+
+  for (let i = 0; i < allItems.length; i++) {
+    let item = allItems[i];
+    allMenuItemIds.push(item.id);
+  } //button id array elements - needed to establish which menu item has been clicked
+  
+  for (let i = 0; i < allOpens.length; i++) {
+    let menu = allOpens[i];
+    allMenus.push(menu);
+  } //id array elements
+
+  for (let i = 0; i < allOpens.length; i++) {
+    let menu = allOpens[i];
+    allIds.push(menu.id);
+  } //id array elements
+
+  for (let i = 0; i < allOpens.length; i++) {
+    let item;
+    isSelected.push(item);//active boolean state for each item
   }
 
   overlay.style.display = 'block';
@@ -26,19 +47,38 @@ toggleMenu = (e) => {
   allMenus.map(( menu => menu.style.display = 'none'));
   allMenuItems.map(( item => item.style.color = 'var(--text-color'));
 
-  if (menuId == 'menu-1') {
-    allMenus[0].style.display = "flex";
-    allMenuItems[0].style.color = 'var(--primary-color)';
-  } else if (menuId == 'menu-2') {
-    allMenus[1].style.display = "flex";
-    allMenuItems[1].style.color = 'var(--primary-color)';
-    } else if (menuId == 'menu-3') {
-      allMenus[2].style.display = "flex";
-      allMenuItems[2].style.color = 'var(--primary-color)';
-      } else if (menuId == 'menu-4') {
-        allMenus[3].style.display = "flex";
-        allMenuItems[3].style.color = 'var(--primary-color)';
-      }
+  removeSelection = () => {
+  for (let i = 0; i < isSelected.length; i++) {
+    isSelected[1] = false;
+  }
+}
+
+  openMenu = (item) => {
+    let checkSelected = JSON.parse(localStorage.getItem('selectedArray'));
+
+    if (checkSelected) {
+      isSelected = checkSelected;
+    }
+
+  if (isSelected[item]) {
+    isSelected[item] = false;
+     closeMenu();
+     localStorage.setItem('selectedArray', JSON.stringify(isSelected));
+    //  localStorage.clear('selectedArray');
+   } else {
+        allMenus[item].style.display = "flex";
+        allMenuItems[item].style.color = 'var(--primary-color)';
+        removeSelection();
+        isSelected = [false, false, false, false];
+        isSelected[item] = true;
+        localStorage.setItem('selectedArray', JSON.stringify(isSelected));
+        }
+  }
+
+  // establishing which menu item has been clecked and
+  // running the opening menu for the current instance
+  whichItem = allMenuItemIds.indexOf(menuId);
+  openMenu(whichItem);
 }
 
 const menuItems = document.getElementsByClassName('menu-item');
@@ -66,6 +106,7 @@ const allMenuItems = [];
   document.getElementById('overlay').style.display = 'none';
 }
 
+//close menu with Esc key
 window.addEventListener('keydown', function(event){
   if(event.key === 'Escape'){
    closeMenu(); 
@@ -94,7 +135,6 @@ const contentVideoImgOverlay = document.getElementById('content-video-img-overla
 const contentVideoControls = document.getElementById('content-video-controls');
 const contentVideoArrow = document.getElementById('content-video-arrow');
 const contentVideoArrowBlue = document.getElementById('content-video-arrow-blue');
-// console.log(contentVideoControls);
 
 contentVideoMouseEnter = () => {
   contentVideoH.style.color = 'var(--primary-color)';
@@ -115,3 +155,25 @@ contentVideoMouseLeave = () => {
 contentVideoImg.style.display = 'block';
 contentVideo.addEventListener('mouseenter', contentVideoMouseEnter);
 contentVideo.addEventListener('mouseleave', contentVideoMouseLeave);
+
+
+// hover for menu items
+hover = (e) => {
+const itemHovered = e.target;
+itemHovered.style.color = 'var(--primary-color)';
+}
+
+removeHover = (e) => {
+const itemHovered = e.target;
+itemHovered.style.color = 'var(--text-color)';
+}
+
+const allItems = document.getElementsByClassName('menu-item');
+for (let i = 0; i < allItems.length; i++) {
+  let item = allItems[i];
+  item.addEventListener('mouseenter', hover);
+  item.addEventListener('mouseleave', removeHover);
+}
+
+
+
