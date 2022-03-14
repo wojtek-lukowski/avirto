@@ -49,7 +49,7 @@ toggleMenu = (e) => {
 
   removeSelection = () => {
   for (let i = 0; i < isSelected.length; i++) {
-    isSelected[1] = false;
+    isSelected[i] = false;
   }
 }
 
@@ -69,7 +69,6 @@ toggleMenu = (e) => {
         allMenus[item].style.display = "flex";
         allMenuItems[item].style.color = 'var(--primary-color)';
         removeSelection();
-        isSelected = [false, false, false, false];
         isSelected[item] = true;
         localStorage.setItem('selectedArray', JSON.stringify(isSelected));
         }
@@ -152,10 +151,11 @@ contentVideoMouseLeave = () => {
   contentVideoArrowBlue.style.display = 'none';
 }
 
-contentVideoImg.style.display = 'block';
-contentVideo.addEventListener('mouseenter', contentVideoMouseEnter);
-contentVideo.addEventListener('mouseleave', contentVideoMouseLeave);
-
+if (window.innerWidth > 375) {
+  contentVideoImg.style.display = 'block';
+  contentVideo.addEventListener('mouseenter', contentVideoMouseEnter);
+  contentVideo.addEventListener('mouseleave', contentVideoMouseLeave);
+}
 
 // hover for menu items
 hover = (e) => {
@@ -174,6 +174,5 @@ for (let i = 0; i < allItems.length; i++) {
   item.addEventListener('mouseenter', hover);
   item.addEventListener('mouseleave', removeHover);
 }
-
 
 
