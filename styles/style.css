@@ -35,7 +35,7 @@
 
 --primary-color: #002F6C;
 --white: #ffff;
---black: #0000;
+--black: #000000;
 --text-color: #777777;
 }
 
@@ -109,6 +109,7 @@ li:hover {
 }
 
 a {
+  cursor: pointer;
   color: var(--text-color);
   text-decoration: none;
 }
@@ -139,6 +140,11 @@ a {
   align-self: flex-end;
   align-self: center;
   transform: translate(0, 2.5rem);
+  margin-top: 0;
+}
+
+.menu-item:hover {
+  color: var(--primary-color) !important;
 }
 
 .page-menu-open {
@@ -209,22 +215,15 @@ margin: 1.4rem 0;
  display: inline;
 }
 
-.page-menu ul li:hover {
-color: var(--primary-color);
-}
-
-.menu-items {
-  margin-top: 0;
-  /* padding-top: 5.6rem; */
-}
-
 .menu-logo {
   width: 22.4rem;
   height: 5.8rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--black);
   font-size: 4rem;
+  font-weight: bold;
 }
 
 .overlay {
