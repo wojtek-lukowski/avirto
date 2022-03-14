@@ -102,13 +102,16 @@ const allMenuItems = [];
     allMenuItems.push(item);
   }
   allMenuItems.map(( item => item.style.color = 'var(--text-color'));
+  document.getElementById('menu-first-item').style.color = 'var(--text-color)';
   document.getElementById('overlay').style.display = 'none';
+  localStorage.clear('selectedArray');
 }
 
 //close menu with Esc key
 window.addEventListener('keydown', function(event){
   if(event.key === 'Escape'){
-   closeMenu(); 
+    localStorage.clear('selectedArray');
+    closeMenu();
   }
   });
 

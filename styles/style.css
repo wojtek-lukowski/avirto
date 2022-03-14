@@ -381,10 +381,6 @@ margin: 0 auto 7.8rem;
     display: inline-block;
     margin-top: var(--gap3);
   }
-
-  header {
-  }
-
   .page-menu {
     /* width: 100%; */
     margin: auto calc(var(--column) * -1);
@@ -456,7 +452,7 @@ margin: 0 auto 7.8rem;
     margin: auto;
     transform: translate(0, 23rem);
     padding: 0 calc(var(--column) + var(--gutter)) var(--gap3);
-    padding: 0 6rem;
+    padding: 0 6rem var(--gap5);
     background-color: var(--white);
   }
 
