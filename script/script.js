@@ -18,7 +18,6 @@ activateMenu = (e) => {
 
   const overlay = document.getElementById('overlay');
   const clickedItem = e.target; //selected menu-item
-  const menuId = e.target.id; //selected menu-item id
 
   overlay.style.display = 'block';
   clickedItem.style.color = 'var(--primary-color)';
@@ -35,7 +34,6 @@ activateMenu = (e) => {
   }
 
   openMenu = (submenu) => {
-
   if (menu[submenu].selected) {
     menu[submenu].selected = false;
      closeMenu();
