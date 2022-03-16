@@ -1,22 +1,13 @@
 const allItems = document.getElementsByClassName('menu-item'); //all menu-items
 const allOpens = document.getElementsByClassName('menu-open'); //all menus
 
-let menuItemElement;
-let menuItemId;
-let menuElement;
-let menuElementId;
-let selected;
-
-let submenu = { menuItemElement, menuItemId, menuElement, menuElementId, selected};
 const menu = [];
 
 for (let i = 0; i < allItems.length; i++) {
 
   submenu = {
     menuItemElement: allItems[i],
-    menuItemId: allItems[i].id,
     menuElement: allOpens[i],
-    menuElementId: allOpens[i].id,
     selected: false
   };
 
@@ -101,10 +92,6 @@ removeOverlay = () => {
 putOverlay = () => {
   headerImg.classList.add('img-overlay');
 }
-
-// headerImg.classList.add('img-overlay');
-// headerImg.addEventListener('mouseenter', removeOverlay);
-// headerImg.addEventListener('mouseleave', putOverlay);
 
 //3rd element hover
 const contentVideo = document.getElementById('content-video');
