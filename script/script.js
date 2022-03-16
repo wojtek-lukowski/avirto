@@ -19,27 +19,33 @@ toggleMenu = (e) => {
   for (let i = 0; i < allItems.length; i++) {
     let item = allItems[i];
     allMenuItems.push(item);
-  } //button array elements
+  } //button (html elements) array
 
   for (let i = 0; i < allItems.length; i++) {
     let item = allItems[i];
     allMenuItemIds.push(item.id);
-  } //button id array elements - needed to establish which menu item has been clicked
+  } //button id array
   
   for (let i = 0; i < allOpens.length; i++) {
     let menu = allOpens[i];
     allMenus.push(menu);
-  } //id array elements
+  } //open menu (html elements) array
 
   for (let i = 0; i < allOpens.length; i++) {
     let menu = allOpens[i];
     allIds.push(menu.id);
-  } //id array elements
+  } //open menu id array
 
   for (let i = 0; i < allOpens.length; i++) {
     let item;
     isSelected.push(item);//active boolean state for each item
   }
+
+  // console.log(allMenuItems);
+  // console.log(allMenuItemIds);
+  // console.log(allMenus);
+  // console.log(allIds);
+  // console.log(isSelected);
 
   overlay.style.display = 'block';
   menuItem.style.color = 'var(--primary-color)';
