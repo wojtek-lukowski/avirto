@@ -75,11 +75,6 @@ const menuItems = document.getElementsByClassName('menu-item');
 
 closeMenu = () => {
 
-  for (let i = 0; i < allItems.length; i++) {
-    console.log('close menu start', i, menu[i].selected)
-    }
-
-
   menu.map( submenu => {
     submenu.selected = false,
     submenu.menuElement.style.display = 'none',
