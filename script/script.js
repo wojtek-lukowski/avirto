@@ -89,6 +89,9 @@ window.addEventListener('keydown', function(event){
   }
   });
 
+//close menu with a click on the page overlay
+document.getElementById('overlay').addEventListener('click', closeMenu);
+
 //header image
 const headerImg = document.getElementById('header-image');
 removeOverlay = () => {
