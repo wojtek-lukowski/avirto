@@ -1,116 +1,93 @@
 localStorage.clear('selectedArray');
 
-toggleMenu = (e) => {
+const allItems = document.getElementsByClassName('menu-item'); //all menu-items
+const allOpens = document.getElementsByClassName('menu-open'); //all menus
 
-  const overlay = document.getElementById('overlay');
-  const menuItem = e.target; //button
-  const menuId = e.target.id; // menu-item id
+let menuItemElement;
+let menuItemId;
+let menuElement;
+let menuElementId;
+let selected;
 
-  const allItems = document.getElementsByClassName('menu-item'); //all buttons
-  const allOpens = document.getElementsByClassName('menu-open'); //all menus
+let submenu = { menuItemElement, menuItemId, menuElement, menuElementId, selected};
+const menu = [];
 
-  const allMenuItems = []; //buttons array
-  const allMenuItemIds = []; //buttons id array
-  const allMenus = []; //id's array
-  const allIds = []; //id's array
+for (let i = 0; i < allItems.length; i++) {
 
-  let isSelected = []; //is selected array
+  submenu = {
+    menuItemElement: allItems[i],
+    menuItemId: allItems[i].id,
+    menuElement: allOpens[i],
+    menuElementId: allOpens[i].id,
+    selected: false
+  };
 
-  for (let i = 0; i < allItems.length; i++) {
-    let item = allItems[i];
-    allMenuItems.push(item);
-  } //button (html elements) array
-
-  for (let i = 0; i < allItems.length; i++) {
-    let item = allItems[i];
-    allMenuItemIds.push(item.id);
-  } //button id array
-  
-  for (let i = 0; i < allOpens.length; i++) {
-    let menu = allOpens[i];
-    allMenus.push(menu);
-  } //open menu (html elements) array
-
-  for (let i = 0; i < allOpens.length; i++) {
-    let menu = allOpens[i];
-    allIds.push(menu.id);
-  } //open menu id array
-
-  for (let i = 0; i < allOpens.length; i++) {
-    let item;
-    isSelected.push(item);//active boolean state for each item
-  }
-
-  // console.log(allMenuItems);
-  // console.log(allMenuItemIds);
-  // console.log(allMenus);
-  // console.log(allIds);
-  // console.log(isSelected);
-
-  overlay.style.display = 'block';
-  menuItem.style.color = 'var(--primary-color)';
-
-  allMenus.map(( menu => menu.style.display = 'none'));
-  allMenuItems.map( item => item.style.color = 'var(--text-color)');
-
-  removeSelection = () => {
-  for (let i = 0; i < isSelected.length; i++) {
-    isSelected[i] = false;
-  }
+  menu.push(submenu);
 }
 
-  openMenu = (item) => {
-    let checkSelected = JSON.parse(localStorage.getItem('selectedArray'));
 
-    if (checkSelected) {
-      isSelected = checkSelected;
-    }
+activateMenu = (e) => {
 
-  if (isSelected[item]) {
-    isSelected[item] = false;
+  const overlay = document.getElementById('overlay');
+  const clickedItem = e.target; //selected menu-item
+  const menuId = e.target.id; //selected menu-item id
+
+  overlay.style.display = 'block';
+  clickedItem.style.color = 'var(--primary-color)';
+
+  menu.map(( submenu => {
+    submenu.menuElement.style.display = 'none',
+    submenu.menuElement.style.color = 'var(--text-color)'
+  }
+  ));
+
+  removeSelection = () => {
+    menu.map(( submenu => 
+      submenu.selected = false ))
+  }
+
+  openMenu = (submenu) => {
+
+  if (menu[submenu].selected) {
+    menu[submenu].selected = false;
      closeMenu();
-     localStorage.setItem('selectedArray', JSON.stringify(isSelected));
-    //  localStorage.clear('selectedArray');
    } else {
-     allMenuItems[item].style.color = 'var(--primary-color)';
+    menu.map( submenu => {
+      submenu.menuItemElement.style.color = 'var(--text-color)'
+    });
+     menu[submenu].menuItemElement.style.color = 'var(--primary-color)';
      removeSelection();
-     isSelected[item] = true;
-     localStorage.setItem('selectedArray', JSON.stringify(isSelected));
-     allMenus[item].style.display = "flex";
+     menu[submenu].selected = true;
+     menu[submenu].menuElement.style.display = "flex";
     }
   }
 
   // establishing which menu item has been clecked and
   // running the opening menu for the current instance
-  selectedItem = allMenuItemIds.indexOf(menuId);
-  openMenu(selectedItem);
+  const clickedMenu = menu.findIndex(submenu => submenu.menuItemElement === clickedItem);
+  openMenu(clickedMenu);
 }
 
 const menuItems = document.getElementsByClassName('menu-item');
   for (let i = 0; i < menuItems.length; i++) {
-      menuItems[i].addEventListener('click', toggleMenu);
+      menuItems[i].addEventListener('click', activateMenu);
   };
 
 closeMenu = () => {
-  const allOpens = document.getElementsByClassName('menu-open');
-  const allMenus = [];
-    for (let i = 0; i < allOpens.length; i++) {
-    let menu = allOpens[i];
-    allMenus.push(menu);
-    }
-  allMenus.map(( menu => menu.style.display = 'none'));
 
-const allItems = document.getElementsByClassName('menu-item');
-const allMenuItems = [];
   for (let i = 0; i < allItems.length; i++) {
-    let item = allItems[i];
-    allMenuItems.push(item);
-  }
-  allMenuItems.map( item => item.style.color = 'var(--text-color)');
+    console.log('close menu start', i, menu[i].selected)
+    }
+
+
+  menu.map( submenu => {
+    submenu.selected = false,
+    submenu.menuElement.style.display = 'none',
+    submenu.menuItemElement.style.color = 'var(--text-color)'
+  });
   document.getElementById('menu-first-item').style.color = 'var(--text-color)';
   document.getElementById('overlay').style.display = 'none';
-  localStorage.clear('selectedArray');
-}
+  }
 
 //close menu with Esc key
 window.addEventListener('keydown', function(event){
