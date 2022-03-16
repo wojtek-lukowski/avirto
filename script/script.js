@@ -54,6 +54,7 @@ activateMenu = (e) => {
   openMenu(clickedMenu);
 }
 
+//event listeners for menu items
 const menuItems = document.getElementsByClassName('menu-item');
   for (let i = 0; i < menuItems.length; i++) {
       menuItems[i].addEventListener('click', activateMenu);
