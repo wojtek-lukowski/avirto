@@ -1,5 +1,3 @@
-localStorage.clear('selectedArray');
-
 const allItems = document.getElementsByClassName('menu-item'); //all menu-items
 const allOpens = document.getElementsByClassName('menu-open'); //all menus
 
@@ -24,7 +22,6 @@ for (let i = 0; i < allItems.length; i++) {
 
   menu.push(submenu);
 }
-
 
 activateMenu = (e) => {
 
@@ -137,22 +134,11 @@ if (window.innerWidth > 375) {
   contentVideo.addEventListener('mouseleave', contentVideoMouseLeave);
 }
 
-//hover for menu items
-// hover = (e) => {
-// const itemHovered = e.target;
-// itemHovered.style.color = 'var(--primary-color)';
-// }
-
-// removeHover = (e) => {
-// const itemHovered = e.target;
-// itemHovered.style.color = 'var(--text-color)';
-// }
-
-// const allItems = document.getElementsByClassName('menu-item');
-// for (let i = 0; i < allItems.length; i++) {
-//   let item = allItems[i];
-//   item.addEventListener('mouseenter', hover);
-//   item.addEventListener('mouseleave', removeHover);
-// }
-
+//console warning: if the number of menu-items is different than the number of menus in HTML file
+checkMenu = () => {
+  if (allItems.length != allOpens.length) {
+    console.warn('There may be a problem, the number of menu-items is different than the number of menus.');
+  }
+}
+checkMenu();
 
