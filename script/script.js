@@ -48,8 +48,8 @@ activateMenu = (e) => {
     }
   }
 
-  // establishing which menu item has been clecked and
-  // running the opening menu for the current instance
+  // establishing which menu item has been clicked and
+  // calling the activateMenu function for the current instance
   const clickedMenu = menu.findIndex(submenu => submenu.menuItemElement === clickedItem);
   openMenu(clickedMenu);
 }
